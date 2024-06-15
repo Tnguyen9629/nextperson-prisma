@@ -4,6 +4,10 @@ import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import { Person } from '../lib/person';
 
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs, { Dayjs } from 'dayjs';
+
+
 interface PersonDialogProps {
   open: boolean;
   handleClose: () => void;
@@ -37,6 +41,19 @@ const PersonDialog: React.FC<PersonDialogProps> = ({ open, handleClose, currentP
         fullWidth
         value={currentPerson?.phone || ''}
         onChange={e => setCurrentPerson(prev => ({ ...prev!, phone: e.target.value }))}
+      />
+      <DatePicker
+        slotProps={{
+          textField: {
+            error: false
+          },
+        }} 
+        format="DD / MM / YYYY"
+        value={dayjs(currentPerson?.date_of_birth || "")} 
+        disableFuture
+        onChange={(value) =>
+          setCurrentPerson((prev) => ({ ...prev!, date_of_birth: dayjs(value).toDate() }))
+        }
       />
     </DialogContent>
     <DialogActions>
