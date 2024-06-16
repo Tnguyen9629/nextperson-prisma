@@ -36,9 +36,9 @@ export async function PUT(request: Request, context: any) {
   try {
 
     const body = await request.json();
-    const { firstname, lastname, phone , date_of_birth} = body;
+    const { firstname, lastname, phone , date_of_birth, postcode} = body;
 
-    if (!firstname || !lastname || !phone || !date_of_birth){
+    if (!firstname || !lastname || !phone || !date_of_birth || !postcode){
       return new Response('Missing required fields', {
         status: 400,
       });
@@ -53,6 +53,7 @@ export async function PUT(request: Request, context: any) {
         lastname,
         phone,
         date_of_birth: new Date(date_of_birth).toISOString(),
+        postcode,
         // You can add other fields to update here
       },
     });

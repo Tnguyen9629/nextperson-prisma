@@ -4,4 +4,5 @@ export interface Person {
     lastname: string;
     phone: string;
     date_of_birth: string| Date;
+    postcode: string;
 }

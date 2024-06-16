@@ -28,4 +28,6 @@ model Person {
   lastname      String
   phone         String
   date_of_birth DateTime @default(dbgenerated("NOW()"))
+  postcode      String
 }
+
